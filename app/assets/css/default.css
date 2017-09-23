@@ -1,0 +1,99 @@
+#back {
+    position:absolute;
+    top:8px;
+    left:8px;
+}
+#back:hover {
+    text-decoration: none;
+}
+#sig {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: .85rem;
+    line-height: 2rem;
+    z-index: 1;
+}
+#connection {
+    position: absolute;
+    left: 235px;
+    text-align: right;
+    margin: -103px 0 0 5;
+}
+#details {
+    position: absolute; 
+    margin-left: 465px;
+    max-width: 900px;
+    padding-right: 20px;
+    background:#fff;
+}
+#details caption {
+    background: #fff;
+}
+caption {
+    caption-side: top;
+}
+.details tbody tr:hover, tr.active {
+    cursor: pointer;
+    background: #FFF9C4 !important;
+}
+.auto-width {
+    width: auto;
+}
+
+body {
+    color: #444;
+    padding: 40px;
+}
+h2 {
+    font-size: 36px;
+    font-weight: normal;
+    letter-spacing: .1em;
+}
+.link {
+    cursor: pointer;    
+}
+a, .action, .link { 
+    text-decoration: none;
+    color: #4283b9;
+}
+a:hover, .link:hover {
+    text-decoration: none;
+}
+.action {
+    cursor: pointer;
+    padding: 0 10px;
+}
+.hidden {
+    display: none !important;
+}
+#key-types {
+    margin: 40px 0 0 0;
+}
+form {
+    max-width: 910px;
+}
+#cmd-view caption div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 440px;    
+}
+.type-buttons {
+    margin: 0 0 10px 0;
+}
+.type-string #type-string, .type-list #type-list, .type-set #type-set, .type-zset #type-zset, .type-hash #type-hash {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.type- #score, .type- #field,
+.type-string #score, .type-string #field,
+.type-list #score, .type-list #field,
+.type-set #score, .type-set #field,
+.type-zset #field,
+.type-hash #score {
+    display: none;
+}

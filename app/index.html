@@ -1,0 +1,369 @@
+<!--
+title: Redis
+-->
+
+<script type="text/x-template" id="search-template">
+<form>
+    <div class="row">
+        <div class="col-4">
+            <input type="text" v-model="q" @input="search()" @blur="updateState()"
+                   name="q" class="form-control" placeholder="Search for key, e.g. urn..." aria-label="Search for key..."
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        <div class="col-auto">
+            <input type="text" v-model="limit" @input="search()" @blur="updateState()"
+                   name="limit" id="limit" class="form-control" placeholder="limit"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:70px">
+        </div>
+        <div class="col-auto">
+            <label for="limit" style="width:30px;line-height:2rem;margin: 0 0 0 -10px">results</label>
+        </div>
+        <div class="col-6">
+            <div class="input-group">
+                <input type="text" v-model="command" @blur="updateState()"
+                       class="form-control" placeholder="Redis Command"
+                       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <span class="input-group-btn"><button class="btn btn-primary" type="button" @click="runCommand()">Go!</button></span>
+            </div>
+        </div>
+    </div>
+</form>
+</script>
+
+<script type="text/x-template" id="redis-info-template">
+<div id="redis-info">
+    <table class="table table-striped" style="width:450px">
+        <tbody>
+    {{ redisInfo | toList 
+       | select: <tr><th>{ it.Key | replace('_',' ') }</th><td title="{ it.Value}">{ it.Value | substringWithElipsis(32) }</td></tr> }}
+        </tbody>
+    </table>
+</div>
+</script>
+
+<script type="text/x-template" id="search-results-template">
+<div id="search-results">
+    <span v-show="results.length == 0">Your search did not match any keys..</span>
+    <table class="table table-striped details auto-width" v-show="results.length > 0">
+        <caption v-show="results.length > 0">Results for '{{ query }}'</caption>
+        <thead>
+            <tr><th>Id</th><th>Type</th><th>Ttl</th><th>Size</th></tr>
+        </thead>
+        <tbody>
+            <tr v-for="x in results" :class="x.id == item ? 'active' : null" @click="$emit('select-item', x)">
+                <td>{{ x.id }}</td>
+                <td>{{ x.type }}</td>
+                <td>{{ x.ttl }}</td>
+                <td>{{ x.size }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</script>
+
+{{ ifHttpPost | use({ host, port, db, password }) | withoutEmptyValues | redisChangeConnection | end }}
+<script type="text/x-template" id="connection-template">{{ 'connection-info' | partial({ redis: redisConnection }) }}</script>
+
+<script type="text/x-template" id="cmd-view-template">
+<table id="cmd-view" class="table table-bordered">
+    <caption v-html="htmlCommand"></caption>
+    <tr>
+        <td v-html="htmlValue"></td>
+    </tr>
+</table>
+</script>
+
+<script type="text/x-template" id="key-view-template">
+<table class="table table-bordered auto-width">
+    <caption>
+        <span v-for="(part, index) in breadcrumbs">
+            <span v-if="index > 0">&gt;</span><span class="action q" @click="selectBreadcrumb(index)">{{ part }}</span>
+        </span>
+    </caption>
+    <tr>
+        <td v-html="htmlValue" v-if="value"></td>
+    </tr>
+    <tr v-if="name">
+        <td v-if="value" colspan="2" style="text-align:right">
+            <span class="action delete" @click="$emit('load-command', 'DEL ' + name)">delete</span>
+            <span class="action edit" v-if="type == 'string'" @click="$emit('edit-key', {name:name, type:type, value:value})">edit</span>
+        </td>
+        <td v-if="!value" class="alert alert-danger"><div>key is empty or does not exist</div></td>
+    </tr>
+</table>
+</script>
+
+<script type="text/x-template" id="key-edit-template">
+<div :class="typeClass" id="key-types">
+    <div class="type-buttons" @click="changeType">
+        <button id="type-string" type="button" class="btn btn-outline-secondary" data-label="Set String">Strings</button>
+        <button id="type-list"   type="button" class="btn btn-outline-secondary" data-label="Add to List">Lists</button>
+        <button id="type-set"    type="button" class="btn btn-outline-secondary" data-label="Add to Set">Sets</button>
+        <button id="type-zset"   type="button" class="btn btn-outline-secondary" data-label="Add to Sorted Set">Sorted Sets</button>
+        <button id="type-hash"   type="button" class="btn btn-outline-secondary" data-label="Set Hash Entry">Hashes</button>
+    </div>
+    <form>
+        <div class="form-group">
+            <div class="input-group input-group-lg">
+                <input id="key" v-model="editName" type="text" class="form-control" placeholder="key" style="min-width:200px"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input id="score" v-model="editScore" type="text" class="form-control" placeholder="score" value="" style="max-width:130px"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <input id="field" v-model="editField" type="text" class="form-control" placeholder="field" value="" style="max-width:130px"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-lg">
+                <textarea id="value" v-model="editValue" class="form-control" placeholder="value" style="min-width:400px;min-height:300px"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="input-group-btn"><button id="btn-key-type" type="button" class="btn btn-success btn-lg" :disabled="disabled" 
+                  @click="update">{{ actionLabel }}</button></span>
+        </div>
+    </form>
+</div>
+</script>
+
+{{ `<script>
+    Vue.prototype.$http = axios;
+    window.bus = new Vue({});
+
+    var DEFAULT_LIMIT = 30;
+    var TYPES = {
+        string: { action: "Set String",        view: "GET {0}",                    edit: "SET {0} {1}"      },
+        list:   { action: "Add to List",       view: "LRANGE {0} 0 -1",            edit: "RPUSH {0} {1}"    },
+        set:    { action: "Add to Set",        view: "SMEMBERS {0}",               edit: "SADD {0} {1}"     },
+        zset:   { action: "Add to Sorted Set", view: "ZRANGE {0} 0 -1 WITHSCORES", edit: "ZADD {0} {2} {1}" },
+        hash:   { action: "Set Hash Entry",    view: "HGETALL {0}",                edit: "HSET {0} {3} {1}" }
+    };
+    
+    function parseQuery(s) {
+        s = s.split('+').join(' ');
+        var to = {}, tokens, re = /[?&]?([^=]+)=([^&]*)/g;
+        while (tokens = re.exec(s)) {
+            to[tokens[1]] = decodeURIComponent(tokens[2]);
+        }
+        return to;
+    }
+
+    function jsonValue(s) {
+        try {
+            return JSON.parse(s);
+        } catch(e){
+            return s;
+        }
+    }
+
+    Vue.component('search', {
+        data: function(){
+            return { q:null, limit:DEFAULT_LIMIT, command:null };
+        },
+        template: '#search-template',
+        created: function(){ 
+            this.search();
+
+            bus.$on('search',function(opt){
+                this.search(opt);
+            }.bind(this));
+        },
+        methods: {
+            search: function(opt) {
+                if (opt) {
+                    this.q = opt.q;
+                    if (opt.limit)
+                        this.limit = parseInt(opt.limit) || this.limit;
+                }
+                if (!this.q) return;
+                this.$http.get('/api/search?q=' + encodeURIComponent(this.q) + '&limit=' + this.limit)
+                    .then(function(results) {
+                        this.$emit('search-results', { q:this.q, limit:this.limit, results:results.data })
+                    }.bind(this))
+            },
+            runCommand: function(){
+                this.$emit('run-command', this.command);
+            },
+            updateState: function(){ bus.$emit('update-state') }
+        }
+    })
+    Vue.component('redis-info', { template: "#redis-info-template" })
+    Vue.component('connection', { template: "#connection-template" })
+
+    Vue.component('search-results', { 
+        props: ["query", "results", "item"],
+        template: "#search-results-template"
+    })
+
+    Vue.component('cmd-view', { 
+        props: ["command","value"],
+        template: "#cmd-view-template" ,
+        computed: {
+            htmlCommand: function(){ return "<div title=\"" + htmlEncode(this.command) + "\">" + htmlEncode(this.command) + "</div>" },
+            htmlValue: function(){ return htmlDump(jsonValue(this.value)) }
+        }
+    })
+
+    Vue.component('key-view', { 
+        props: ["name","type","value"],
+        template: "#key-view-template",
+        computed: {
+            breadcrumbs: function(){
+                var parts = (this.name || '').split(':');
+                return parts.length >= 2
+                    ? parts
+                    : [];
+            },
+            htmlValue: function(){ return htmlDump(jsonValue(this.value)) }
+        },
+        methods: {
+            selectBreadcrumb: function(index) {
+                bus.$emit('search', { q: this.name.split(':').slice(0, index + 1).join(':') });
+            }            
+        }
+    })
+
+    Vue.component('key-edit', { 
+        props: ["activeKey"],
+        data: function(){ return { editName: null, editType: null, editValue: null, editScore:null, editField:null } },
+        template: "#key-edit-template" ,
+        computed: {
+            type: function(){ return this.editType || 'string' },
+            typeClass: function(){ return 'type-' + this.type },
+            disabled: function(){
+                return !this.editName || !this.editValue || 
+                    (this.activeKey && this.activeKey.name == this.editName && this.activeKey.value == this.editValue && this.editType == "string");
+            },
+            actionLabel: function() { return TYPES[this.type].action; }
+        },
+        methods: {
+            changeType: function(e) {
+                this.editType = e.target.id.split('-')[1];
+                this.refresh();
+            },
+            refresh: function(){
+                if (!this.activeKey) return;
+                var matchesType = this.editType == this.activeKey.type;                
+                this.editName = matchesType ? this.activeKey.name : null;
+                this.editValue = matchesType && this.editType == "string" ? this.activeKey.value : null;
+                this.editScore = this.editField = null;
+            },
+            update: function(){
+                var cmd = TYPES[this.type].edit;
+                var fields = [this.editName, this.editValue, this.editScore, this.editField];
+                for (var i=0; i<fields.length; i++) {
+                    cmd = cmd.replace("{" + i + "}", fields[i]);
+                }
+                this.$emit('run-command', cmd);
+            }
+        },
+        watch: {
+            activeKey: function(newValue) { this.editType = newValue.type; this.refresh() }
+        }
+    })
+
+    var vm = new Vue({
+        el: "#app",
+        data: function(){
+            return { q:null, view:null, 
+                     key:null, keyType:null, keyValue:null, activeKey:null, cmd:null, cmdText:null, cmdOutput:null, searchResults:[] };
+        },
+        methods: {
+            load: function(qs) {
+                this.q = qs.q || '';
+                this.view = qs.view || '';
+                this.$refs.search.command = qs.command || '';
+                this.$refs.search.search({ q: this.q, limit: parseInt(qs.limit) || DEFAULT_LIMIT });
+                if (qs.id) {
+                    this.selectItem({ id: qs.id, type: qs.type }, { skipPushState: true });
+                }        
+            },
+            loadSearchResults: function(r) {
+                this.q = r.q;
+                this.limit = r.limit;
+                this.searchResults = r.results;
+            },
+            selectItem: function(result, opt) {
+                opt = opt || {};
+                this.cmdText = this.cmdOutput = null;
+                this.key = result.id;
+                this.keyType = result.type;                
+                this.$http.get('/api/call?command=' + encodeURIComponent(this.getViewCommand(this.key, this.keyType)))
+                    .then(function(r){
+                        this.keyValue = r.data;
+                        this.activeKey = { name: this.key, type: this.keyType, value: this.keyValue };
+                        if (!opt.skipPushState) bus.$emit('update-state');
+                    }.bind(this))
+            },
+            getViewCommand: function(key, type) { return TYPES[type].view.replace("{0}", key) },
+            loadCommand: function(command){ 
+                this.$refs.search.command = command; 
+                bus.$emit('update-state');
+            },
+            editKey: function(activeKey) { this.activeKey = activeKey },
+            runCommand: function(command){
+                this.$http.post('/api/call', "command=" + encodeURIComponent(command))
+                    .then(function(r){
+                        this.key = this.keyType = this.keyValue = this.cmd = null;
+                        this.cmdText = command;
+                        this.cmdOutput = r.data;
+                        bus.$emit('search');
+                    }.bind(this))
+            },
+            generateUrl: function(){
+                var search = vm.$refs.search;
+                var state = {
+                    q: search.q,
+                    limit: search.limit == DEFAULT_LIMIT ? null : search.limit,
+                    command: search.command,
+                    view: this.view
+                };
+                if (vm.activeKey && vm.activeKey.name) {
+                    state.id = vm.activeKey.name;
+                    state.type = vm.activeKey.type;
+                }
+                var url = "";
+                for (var k in state) {
+                    if (!state[k]) continue;
+                    if (url) url += "&";
+                    url += k + "=" + encodeURIComponent(state[k]);
+                }
+                return url;
+            },
+            loadView: function(view) {
+                this.view = view;
+                bus.$emit('update-state');
+            }
+        }
+    })
+
+    bus.$on('update-state', function(){
+        if (!history.pushState) return;
+        var url = vm.generateUrl();
+        if (!url) return;
+        history.pushState(null, vm.key || vm.$refs.search.q, "?" + url);
+    });
+
+    window.onpopstate = function(e){ vm.load(parseQuery(location.search)) };
+    vm.load(parseQuery(location.search));
+</script>` | appendTo: scripts }}
+
+<div id="app">
+    <search ref="search" @search-results="loadSearchResults" @run-command="runCommand"></search>
+
+    <h6 id="connection"><span class="link" @click="loadView('connection')">@ {{ redisConnectionString }}</span></h6>
+    <connection v-show="view == 'connection'"></connection>
+
+    <div id="details">
+        <cmd-view v-show="cmdOutput"  :command="cmdText" :value="cmdOutput"></cmd-view>
+        <key-view v-show="!cmdOutput" :name="key" :type="keyType" :value="keyValue" @load-command="loadCommand" @edit-key="editKey"></key-view>
+        <key-edit :active-key="activeKey" @run-command="runCommand"></key-edit>
+    </div>
+
+    <div v-show="!view">
+        <redis-info     v-show="!q"></redis-info>
+        <search-results v-show="q" :query="q" :results="searchResults" :item="key" @select-item="selectItem"></search-results>
+    </div>
+</div>
+

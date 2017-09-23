@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>{{ title | default('Redis Vue WebApp') }}</title>
+{{ ifDebug | select: <script>{ '/js/hot-loader.js' | includeFile }</script> }}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Redis Vue WebApp">
+<meta name="author" content="ServiceStack">
+
+<link href="/assets/img/redis-logo.png" rel="icon">
+<link rel="stylesheet" href="../assets/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/default.css">
+</head>
+<body>
+    <a href="https://github.com/NetCoreWebApps/Redis"><img style="z-index:3; position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
+    <h2 id="title"><a href="/"><img src="/assets/img/redis-logo.png" style="height:60px;" /> {{ title }}</a></h2>
+
+    {{ page }}
+
+    <script src="../assets/js/html-utils.js"></script>
+    <script src="../assets/js/vue{{ '.min' | if(!debug) }}.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    
+    {{ scripts | raw }} 
+
+    <div id="sig">made with <span>&#10084;</span> by <a target="_blank" href="https://servicestack.net" title="ServiceStack">ServiceStack</a></div>
+</body>
+</html>
