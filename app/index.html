@@ -286,11 +286,11 @@ title: Redis
             },
             selectItem: function(result, opt) {
                 opt = opt || {};
-                this.cmdText = this.cmdOutput = null;
-                this.key = result.id;
-                this.keyType = result.type;                
-                this.$http.get('/api/call?command=' + encodeURIComponent(this.getViewCommand(this.key, this.keyType)))
+                this.$http.get('/api/call?command=' + encodeURIComponent(this.getViewCommand(result.id, result.type)))
                     .then(function(r){
+                        this.cmdText = this.cmdOutput = null;
+                        this.key = result.id;
+                        this.keyType = result.type;
                         this.keyValue = r.data;
                         this.activeKey = { name: this.key, type: this.keyType, value: this.keyValue };
                         if (!opt.skipPushState) bus.$emit('update-state');
