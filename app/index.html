@@ -20,7 +20,7 @@ title: Redis
         </div>
         <div class="col-6">
             <div class="input-group">
-                <input type="text" v-model="command" @blur="updateState()"
+                <input type="text" v-model="command" @blur="updateState()" @keyup.enter="runCommand()"
                        class="form-control" placeholder="Redis Command"
                        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                 <span class="input-group-btn"><button class="btn btn-primary" type="button" @click="runCommand()">Go!</button></span>
@@ -34,8 +34,8 @@ title: Redis
 <div id="redis-info">
     <table class="table table-striped" style="width:450px">
         <tbody>
-    {{ redisInfo | toList 
-       | select: <tr><th>{ it.Key | replace('_',' ') }</th><td title="{ it.Value}">{ it.Value | substringWithElipsis(32) }</td></tr> }}
+{{ redisInfo | toList 
+   | select: <tr><th>{ it.Key | replace('_',' ') }</th><td title="{it.Value}">{ it.Value | substringWithElipsis(32) }</td></tr> }}
         </tbody>
     </table>
 </div>
@@ -61,8 +61,15 @@ title: Redis
 </div>
 </script>
 
+{{ continueExecutingFiltersOnError }}
 {{ ifHttpPost | use({ host, port, db, password }) | withoutEmptyValues | redisChangeConnection | end }}
-<script type="text/x-template" id="connection-template">{{ 'connection-info' | partial({ redis: redisConnection }) }}</script>
+<script type="text/x-template" id="connection-template">
+<div id="connection-info" class="container" style="position:absolute;max-width:440px;margin:65px 0 0 0">
+    {{ ifHttpPost | use(lastErrorMessage) | onlyIfExists | formatRaw: <div class="alert alert-danger">{0}</div> }}
+    {{ ifHttpPost | ifNoError | showRaw: <div class="alert alert-success">Connection Changed</div> }}
+    {{ 'connection-info' | partial({ redis: redisConnection }) }}
+</div>
+</script>
 
 <script type="text/x-template" id="cmd-view-template">
 <table id="cmd-view" class="table table-bordered">
@@ -157,6 +164,8 @@ title: Redis
         }
     }
 
+    function toError(res) { console.log('toError', res); return (res.data && res.data.responseStatus) || { errorCode: res.status, message: res.statusText }; }
+
     Vue.component('search', {
         data: function(){
             return { q:null, limit:DEFAULT_LIMIT, command:null };
@@ -189,7 +198,12 @@ title: Redis
         }
     })
     Vue.component('redis-info', { template: "#redis-info-template" })
-    Vue.component('connection', { template: "#connection-template" })
+    Vue.component('connection', { 
+        template: "#connection-template",
+        methods: {
+            done: function() { vm.loadView('') }
+        }
+    })
 
     Vue.component('search-results', { 
         props: ["query", "results", "item"],
@@ -266,8 +280,8 @@ title: Redis
     var vm = new Vue({
         el: "#app",
         data: function(){
-            return { q:null, view:null, 
-                     key:null, keyType:null, keyValue:null, activeKey:null, cmd:null, cmdText:null, cmdOutput:null, searchResults:[] };
+            return { q:null, view:null, key:null, keyType:null, keyValue:null, activeKey:null, cmd:null, cmdText:null, cmdOutput:null, 
+                     error: null, searchResults:[] };
         },
         methods: {
             load: function(qs) {
@@ -279,7 +293,7 @@ title: Redis
                     this.selectItem({ id: qs.id, type: qs.type }, { skipPushState: true });
                 }        
             },
-            loadSearchResults: function(r) {
+            loadSearchResults: function(r) {                
                 this.q = r.q;
                 this.limit = r.limit;
                 this.searchResults = r.results;
@@ -288,7 +302,7 @@ title: Redis
                 opt = opt || {};
                 this.$http.get('/api/call?command=' + encodeURIComponent(this.getViewCommand(result.id, result.type)))
                     .then(function(r){
-                        this.cmdText = this.cmdOutput = null;
+                        this.error = this.cmdText = this.cmdOutput = null;
                         this.key = result.id;
                         this.keyType = result.type;
                         this.keyValue = r.data;
@@ -303,13 +317,18 @@ title: Redis
             },
             editKey: function(activeKey) { this.activeKey = activeKey },
             runCommand: function(command){
+                this.cmdText = this.cmdOutput = null;
                 this.$http.post('/api/call', "command=" + encodeURIComponent(command))
                     .then(function(r){
-                        this.key = this.keyType = this.keyValue = this.cmd = null;
+                        this.error = this.key = this.keyType = this.keyValue = this.cmd = null;
                         this.cmdText = command;
                         this.cmdOutput = r.data;
                         bus.$emit('search');
                     }.bind(this))
+                    .catch(this.setError.bind(this))
+            },
+            setError: function(err){
+                this.error = toError(err.response);
             },
             generateUrl: function(){
                 var search = vm.$refs.search;
@@ -333,6 +352,7 @@ title: Redis
             },
             loadView: function(view) {
                 this.view = view;
+                document.querySelectorAll("#connection-info .alert").forEach(e => e.parentNode.removeChild(e));
                 bus.$emit('update-state');
             }
         }
@@ -356,7 +376,8 @@ title: Redis
     <connection v-show="view == 'connection'"></connection>
 
     <div id="details">
-        <cmd-view v-show="cmdOutput"  :command="cmdText" :value="cmdOutput"></cmd-view>
+        <div v-if="error" class="alert alert-danger">{{ error.message }}</div>
+        <cmd-view v-show="cmdOutput != null"  :command="cmdText" :value="cmdOutput"></cmd-view>
         <key-view v-show="!cmdOutput" :name="key" :type="keyType" :value="keyValue" @load-command="loadCommand" @edit-key="editKey"></key-view>
         <key-edit :active-key="activeKey" @run-command="runCommand"></key-edit>
     </div>
@@ -366,4 +387,3 @@ title: Redis
         <search-results v-show="q" :query="q" :results="searchResults" :item="key" @select-item="selectItem"></search-results>
     </div>
 </div>
-

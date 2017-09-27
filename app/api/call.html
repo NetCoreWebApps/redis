@@ -5,6 +5,6 @@
 
 {{ illegalCommand | ifThrowArgumentException('Command is not allowed.') }}
 
-{{ command | redisCall | assignTo: json }}
+{{ command  | redisCall | assignTo: contents }}
 
-{{ json | return({ 'Content-Type': 'text/plain' }) }}
+{{ contents | return({ 'Content-Type': 'text/plain' }) }}
