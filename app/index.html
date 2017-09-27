@@ -317,6 +317,7 @@ title: Redis
             },
             editKey: function(activeKey) { this.activeKey = activeKey },
             runCommand: function(command){
+                if (!command) return;
                 this.cmdText = this.cmdOutput = null;
                 this.$http.post('/api/call', "command=" + encodeURIComponent(command))
                     .then(function(r){
