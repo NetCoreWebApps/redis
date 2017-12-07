@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "7b36b8636405de2f018a129889021b5deef4b7df"
+    "signature": "b8a4aa169a6892da78f1923ce0885efc9290dfee"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,30 +10,30 @@
         "dependencies": {
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.Data.Sqlite": "2.0.0",
-          "MySql.Data": "8.0.8-dmr",
+          "MySql.Data": "8.0.9-dmr",
           "Npgsql": "3.2.5",
-          "ServiceStack.Api.OpenApi.Core": "1.0.44",
-          "ServiceStack.Aws.Core": "1.0.44",
-          "ServiceStack.Azure.Core": "1.0.44",
-          "ServiceStack.Client.Core": "1.0.44",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.OrmLite.MySql.Core": "1.0.44",
-          "ServiceStack.OrmLite.PostgreSQL.Core": "1.0.44",
-          "ServiceStack.OrmLite.SqlServer.Core": "1.0.44",
-          "ServiceStack.OrmLite.Sqlite.Core": "1.0.44",
-          "ServiceStack.Redis.Core": "1.0.44",
-          "ServiceStack.Server.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack": "5.0.0",
+          "ServiceStack.Api.OpenApi": "5.0.0",
+          "ServiceStack.Aws": "5.0.0",
+          "ServiceStack.Azure": "5.0.0",
+          "ServiceStack.Client": "5.0.0",
+          "ServiceStack.Common": "5.0.0",
+          "ServiceStack.Interfaces": "5.0.0",
+          "ServiceStack.OrmLite": "5.0.0",
+          "ServiceStack.OrmLite.MySql": "5.0.0",
+          "ServiceStack.OrmLite.PostgreSQL": "5.0.0",
+          "ServiceStack.OrmLite.SqlServer": "5.0.0",
+          "ServiceStack.OrmLite.Sqlite": "5.0.0",
+          "ServiceStack.Redis": "5.0.0",
+          "ServiceStack.Server": "5.0.0",
+          "ServiceStack.Text": "5.0.0",
           "System.Data.SqlClient": "4.4.0"
         },
         "runtime": {
           "app.dll": {}
         }
       },
-      "AWSSDK.Core/3.3.17.6": {
+      "AWSSDK.Core/3.3.19": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
           "System.Net.Requests": "4.3.0",
@@ -45,25 +45,25 @@
           "lib/netstandard1.3/AWSSDK.Core.dll": {}
         }
       },
-      "AWSSDK.DynamoDBv2/3.3.4.17": {
+      "AWSSDK.DynamoDBv2/3.3.4.20": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.17.6"
+          "AWSSDK.Core": "3.3.19"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.DynamoDBv2.dll": {}
         }
       },
-      "AWSSDK.S3/3.3.10.2": {
+      "AWSSDK.S3/3.3.12.1": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.17.6"
+          "AWSSDK.Core": "3.3.19"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.S3.dll": {}
         }
       },
-      "AWSSDK.SQS/3.3.2.7": {
+      "AWSSDK.SQS/3.3.3.2": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.17.6"
+          "AWSSDK.Core": "3.3.19"
         },
         "runtime": {
           "lib/netstandard1.3/AWSSDK.SQS.dll": {}
@@ -1156,8 +1156,8 @@
       "Microsoft.Azure.KeyVault/2.3.2": {
         "dependencies": {
           "Microsoft.Azure.KeyVault.WebKey": "2.0.7",
-          "Microsoft.Rest.ClientRuntime": "2.3.8",
-          "Microsoft.Rest.ClientRuntime.Azure": "3.3.7",
+          "Microsoft.Rest.ClientRuntime": "2.3.10",
+          "Microsoft.Rest.ClientRuntime.Azure": "3.3.10",
           "Newtonsoft.Json": "10.0.1",
           "System.Net.Http": "4.3.0"
         },
@@ -1178,10 +1178,10 @@
           "lib/netstandard1.4/Microsoft.Azure.KeyVault.WebKey.dll": {}
         }
       },
-      "Microsoft.Azure.Management.ServiceBus/1.0.0": {
+      "Microsoft.Azure.Management.ServiceBus/1.0.2": {
         "dependencies": {
-          "Microsoft.Rest.ClientRuntime": "2.3.8",
-          "Microsoft.Rest.ClientRuntime.Azure": "3.3.7",
+          "Microsoft.Rest.ClientRuntime": "2.3.10",
+          "Microsoft.Rest.ClientRuntime.Azure": "3.3.10",
           "Newtonsoft.Json": "10.0.1",
           "System.Net.Http": "4.3.0"
         },
@@ -1877,7 +1877,7 @@
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.Rest.ClientRuntime/2.3.8": {
+      "Microsoft.Rest.ClientRuntime/2.3.10": {
         "dependencies": {
           "Newtonsoft.Json": "10.0.1"
         },
@@ -1885,9 +1885,9 @@
           "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.dll": {}
         }
       },
-      "Microsoft.Rest.ClientRuntime.Azure/3.3.7": {
+      "Microsoft.Rest.ClientRuntime.Azure/3.3.10": {
         "dependencies": {
-          "Microsoft.Rest.ClientRuntime": "2.3.8",
+          "Microsoft.Rest.ClientRuntime": "2.3.10",
           "Newtonsoft.Json": "10.0.1"
         },
         "runtime": {
@@ -1927,7 +1927,7 @@
           }
         }
       },
-      "MySql.Data/8.0.8-dmr": {
+      "MySql.Data/8.0.9-dmr": {
         "dependencies": {
           "Google.Protobuf": "3.3.0",
           "Microsoft.Extensions.Configuration.Json": "2.0.0",
@@ -2188,72 +2188,80 @@
           }
         }
       },
-      "ServiceStack.Api.OpenApi.Core/1.0.44": {
+      "ServiceStack/5.0.0": {
         "dependencies": {
-          "ServiceStack.Client.Core": "1.0.44",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Http": "2.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.0.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Primitives": "2.0.0",
+          "ServiceStack.Client": "5.0.0",
+          "ServiceStack.Common": "5.0.0",
+          "System.Linq.Queryable": "4.3.0",
+          "System.Reflection.Emit": "4.3.0",
+          "System.Threading.Thread": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ServiceStack.dll": {}
+        }
+      },
+      "ServiceStack.Api.OpenApi/5.0.0": {
+        "dependencies": {
+          "ServiceStack": "5.0.0",
           "System.Collections.Specialized": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
           "System.ServiceModel.Primitives": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.Api.OpenApi.dll": {}
+          "lib/netstandard2.0/ServiceStack.Api.OpenApi.dll": {}
         }
       },
-      "ServiceStack.Aws.Core/1.0.44": {
+      "ServiceStack.Aws/5.0.0": {
         "dependencies": {
-          "AWSSDK.Core": "3.3.17.6",
-          "AWSSDK.DynamoDBv2": "3.3.4.17",
-          "AWSSDK.S3": "3.3.10.2",
-          "AWSSDK.SQS": "3.3.2.7",
-          "ServiceStack.Client.Core": "1.0.44",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44"
+          "AWSSDK.Core": "3.3.19",
+          "AWSSDK.DynamoDBv2": "3.3.4.20",
+          "AWSSDK.S3": "3.3.12.1",
+          "AWSSDK.SQS": "3.3.3.2",
+          "ServiceStack": "5.0.0",
+          "System.ServiceModel.Primitives": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.Aws.dll": {}
+          "lib/netstandard2.0/ServiceStack.Aws.dll": {}
         }
       },
-      "ServiceStack.Azure.Core/1.0.44": {
+      "ServiceStack.Azure/5.0.0": {
         "dependencies": {
-          "Microsoft.Azure.Management.ServiceBus": "1.0.0",
+          "Microsoft.Azure.Management.ServiceBus": "1.0.2",
           "Microsoft.Azure.ServiceBus": "1.0.0",
-          "ServiceStack.Client.Core": "1.0.44",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack": "5.0.0",
           "WindowsAzure.Storage": "8.4.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.Azure.dll": {}
+          "lib/netstandard2.0/ServiceStack.Azure.dll": {}
         }
       },
-      "ServiceStack.Client.Core/1.0.44": {
+      "ServiceStack.Client/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "2.0.0",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack.Interfaces": "5.0.0",
+          "ServiceStack.Text": "5.0.0",
           "System.Collections.Specialized": "4.3.0",
           "System.Net.Requests": "4.3.0",
           "System.ServiceModel.Primitives": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.Client.dll": {}
+          "lib/netstandard2.0/ServiceStack.Client.dll": {}
         }
       },
-      "ServiceStack.Common.Core/1.0.44": {
+      "ServiceStack.Common/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "2.0.0",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack.Interfaces": "5.0.0",
+          "ServiceStack.Text": "5.0.0",
           "System.ComponentModel.Primitives": "4.3.0",
           "System.Data.Common": "4.3.0",
           "System.Dynamic.Runtime": "4.3.0",
@@ -2263,44 +2271,21 @@
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.Common.dll": {}
+          "lib/netstandard2.0/ServiceStack.Common.dll": {}
         }
       },
-      "ServiceStack.Core/1.0.44": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
-          "Microsoft.AspNetCore.Http": "2.0.0",
-          "Microsoft.AspNetCore.Http.Abstractions": "2.0.0",
-          "Microsoft.AspNetCore.Http.Extensions": "2.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "2.0.0",
-          "Microsoft.Extensions.Primitives": "2.0.0",
-          "ServiceStack.Client.Core": "1.0.44",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
-          "System.Linq.Queryable": "4.3.0",
-          "System.Reflection.Emit": "4.3.0",
-          "System.Threading.Thread": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.6/ServiceStack.dll": {}
-        }
-      },
-      "ServiceStack.Interfaces.Core/1.0.44": {
+      "ServiceStack.Interfaces/5.0.0": {
         "dependencies": {
           "System.Runtime": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.1/ServiceStack.Interfaces.dll": {}
+          "lib/netstandard2.0/ServiceStack.Interfaces.dll": {}
         }
       },
-      "ServiceStack.OrmLite.Core/1.0.44": {
+      "ServiceStack.OrmLite/5.0.0": {
         "dependencies": {
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack.Common": "5.0.0",
           "System.Collections.NonGeneric": "4.3.0",
           "System.ComponentModel.Annotations": "4.4.0",
           "System.ComponentModel.Primitives": "4.3.0",
@@ -2312,99 +2297,79 @@
           "System.Xml.XmlDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.OrmLite.dll": {}
+          "lib/netstandard2.0/ServiceStack.OrmLite.dll": {}
         }
       },
-      "ServiceStack.OrmLite.MySql.Core/1.0.44": {
+      "ServiceStack.OrmLite.MySql/5.0.0": {
         "dependencies": {
-          "MySql.Data": "8.0.8-dmr",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44"
+          "MySql.Data": "8.0.9-dmr",
+          "ServiceStack.OrmLite": "5.0.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.OrmLite.MySql.dll": {}
+          "lib/netstandard2.0/ServiceStack.OrmLite.MySql.dll": {}
         }
       },
-      "ServiceStack.OrmLite.PostgreSQL.Core/1.0.44": {
+      "ServiceStack.OrmLite.PostgreSQL/5.0.0": {
         "dependencies": {
           "Npgsql": "3.2.5",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44"
+          "ServiceStack.OrmLite": "5.0.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.OrmLite.PostgreSQL.dll": {}
+          "lib/netstandard2.0/ServiceStack.OrmLite.PostgreSQL.dll": {}
         }
       },
-      "ServiceStack.OrmLite.Sqlite.Core/1.0.44": {
+      "ServiceStack.OrmLite.Sqlite/5.0.0": {
         "dependencies": {
           "Microsoft.Data.Sqlite": "2.0.0",
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44"
+          "ServiceStack.OrmLite": "5.0.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.OrmLite.Sqlite.dll": {}
+          "lib/netstandard2.0/ServiceStack.OrmLite.Sqlite.dll": {}
         }
       },
-      "ServiceStack.OrmLite.SqlServer.Core/1.0.44": {
+      "ServiceStack.OrmLite.SqlServer/5.0.0": {
         "dependencies": {
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack.OrmLite": "5.0.0",
           "System.Data.SqlClient": "4.4.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.OrmLite.SqlServer.dll": {}
+          "lib/netstandard2.0/ServiceStack.OrmLite.SqlServer.dll": {}
         }
       },
-      "ServiceStack.Redis.Core/1.0.44": {
+      "ServiceStack.Redis/5.0.0": {
         "dependencies": {
-          "ServiceStack.Common.Core": "1.0.44",
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44",
+          "ServiceStack.Common": "5.0.0",
           "System.Collections.NonGeneric": "4.3.0",
           "System.Collections.Specialized": "4.3.0",
+          "System.Data.Common": "4.3.0",
           "System.Net.NameResolution": "4.3.0",
-          "System.Net.Security": "4.3.1"
+          "System.Net.Security": "4.3.1",
+          "System.Threading.Thread": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.Redis.dll": {}
+          "lib/netstandard2.0/ServiceStack.Redis.dll": {}
         }
       },
-      "ServiceStack.Server.Core/1.0.44": {
+      "ServiceStack.Server/5.0.0": {
         "dependencies": {
-          "ServiceStack.Interfaces.Core": "1.0.44",
-          "ServiceStack.OrmLite.Core": "1.0.44",
-          "ServiceStack.Redis.Core": "1.0.44",
-          "ServiceStack.Text.Core": "1.0.44"
+          "ServiceStack": "5.0.0",
+          "ServiceStack.OrmLite": "5.0.0",
+          "ServiceStack.Redis": "5.0.0"
         },
         "runtime": {
-          "lib/netstandard1.6/ServiceStack.Server.dll": {}
+          "lib/netstandard2.0/ServiceStack.Server.dll": {}
         }
       },
-      "ServiceStack.Text.Core/1.0.44": {
+      "ServiceStack.Text/5.0.0": {
         "dependencies": {
           "Microsoft.CSharp": "4.4.0",
           "Microsoft.Extensions.Primitives": "2.0.0",
-          "System.Collections": "4.3.0",
-          "System.Collections.Specialized": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Net.Requests": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
           "System.Reflection.Emit.Lightweight": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Runtime.Serialization.Primitives": "4.3.0",
-          "System.Runtime.Serialization.Xml": "4.3.0"
+          "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/ServiceStack.Text.dll": {}
+          "lib/netstandard2.0/ServiceStack.Text.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/1.1.7": {
@@ -3978,33 +3943,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AWSSDK.Core/3.3.17.6": {
+    "AWSSDK.Core/3.3.19": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-D4hLBYqhQUkPIMKysA0MOI9Xey5TD3iw6FG3bCzVvAvwBl8Txc9ojU/4z7E4A1AsP2xw2PRy2ZZCVSb0myyt4g==",
-      "path": "awssdk.core/3.3.17.6",
-      "hashPath": "awssdk.core.3.3.17.6.nupkg.sha512"
+      "sha512": "sha512-zmXaVNKtbQ1RfwHawEkKM7nvkSeWjljwiBKtaUpf2Woni/vmYd5l0gY54dNVN7Z9IsCoxwitGcFfJYOtrE/upg==",
+      "path": "awssdk.core/3.3.19",
+      "hashPath": "awssdk.core.3.3.19.nupkg.sha512"
     },
-    "AWSSDK.DynamoDBv2/3.3.4.17": {
+    "AWSSDK.DynamoDBv2/3.3.4.20": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jbo7TzR4/4XM4KaN6sdzOuNhWflx8TU1bW1te2Gp9u4/vDJlMcq6K5PFHR8kBA85I4y551R1it56NLOqynyTTQ==",
-      "path": "awssdk.dynamodbv2/3.3.4.17",
-      "hashPath": "awssdk.dynamodbv2.3.3.4.17.nupkg.sha512"
+      "sha512": "sha512-Nr5crHqBe1txamJxWTwdrM0Fly1Mv6Kk8H5DeXEaA7HEzZW+IJ0VGy+oKJ9AE6d/mSAnqilILsr5xnj476JMZw==",
+      "path": "awssdk.dynamodbv2/3.3.4.20",
+      "hashPath": "awssdk.dynamodbv2.3.3.4.20.nupkg.sha512"
     },
-    "AWSSDK.S3/3.3.10.2": {
+    "AWSSDK.S3/3.3.12.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MBKKTjhQMZQrpYs6IZd4SysTEJqV/ZPjKSsaY//m9mVp0CPm96lHh+z447qyM1rEXIuybGiiMKccj7qfSSTQWQ==",
-      "path": "awssdk.s3/3.3.10.2",
-      "hashPath": "awssdk.s3.3.3.10.2.nupkg.sha512"
+      "sha512": "sha512-86tkvW2dea8kR7nBUH5jDPUbaO66+3HX2qf8s1qFo/iN/8L/vsyWJKQKjMWLOpKpTGu7D8bbJu77kITh9MjQyQ==",
+      "path": "awssdk.s3/3.3.12.1",
+      "hashPath": "awssdk.s3.3.3.12.1.nupkg.sha512"
     },
-    "AWSSDK.SQS/3.3.2.7": {
+    "AWSSDK.SQS/3.3.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CXjOeJeQN2SxbkkcJb0DUsSKDu+LwWwNFGaaatbxRQlW0CIF7NxF8sUXnw4HjmzcqCi/usUpJ00loUsQd23rHQ==",
-      "path": "awssdk.sqs/3.3.2.7",
-      "hashPath": "awssdk.sqs.3.3.2.7.nupkg.sha512"
+      "sha512": "sha512-D93mnU+mlNlaoxKkjYwFWJHaw7FFFm0tM6SuMxTeu0NdtXHrBrteLF5oa28ePiwR0EayRbss0yT1sEm5XqYvog==",
+      "path": "awssdk.sqs/3.3.3.2",
+      "hashPath": "awssdk.sqs.3.3.3.2.nupkg.sha512"
     },
     "Google.Protobuf/3.3.0": {
       "type": "package",
@@ -4730,12 +4695,12 @@
       "hashPath": "microsoft.azure.keyvault.webkey.2.0.7.nupkg.sha512",
       "runtimeStoreManifestName": "aspnetcore-store-2.0.0-linux-x64.xml;aspnetcore-store-2.0.0-osx-x64.xml;aspnetcore-store-2.0.0-win7-x64.xml;aspnetcore-store-2.0.0-win7-x86.xml"
     },
-    "Microsoft.Azure.Management.ServiceBus/1.0.0": {
+    "Microsoft.Azure.Management.ServiceBus/1.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NntUeN57QOy5/Xz5MqvflwDXVGiPyzOk6PO4hA0wSoAzo88KYnUlhwwz7zyOLjFWUKRB/TaFOnKGZIgp9cNadQ==",
-      "path": "microsoft.azure.management.servicebus/1.0.0",
-      "hashPath": "microsoft.azure.management.servicebus.1.0.0.nupkg.sha512"
+      "sha512": "sha512-BlCg3TkcoR+K3PKYfn3EKHCnEQ4ZTpJPmbm4rrohWLZrP+E7uqQI07zV6GtnsYUN7+W9N4lQIAQOAdlBzDhYgg==",
+      "path": "microsoft.azure.management.servicebus/1.0.2",
+      "hashPath": "microsoft.azure.management.servicebus.1.0.2.nupkg.sha512"
     },
     "Microsoft.Azure.ServiceBus/1.0.0": {
       "type": "package",
@@ -5282,21 +5247,19 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.Rest.ClientRuntime/2.3.8": {
+    "Microsoft.Rest.ClientRuntime/2.3.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Hj96LBoCwKY2VQKfSCVGGPV1sSumVjuYnrlpBwL4JSTnSK4b6ZxjLtXj8LgmKav8xJ2gps+UN7eI3hHVFKvBFw==",
-      "path": "microsoft.rest.clientruntime/2.3.8",
-      "hashPath": "microsoft.rest.clientruntime.2.3.8.nupkg.sha512",
-      "runtimeStoreManifestName": "aspnetcore-store-2.0.0-linux-x64.xml;aspnetcore-store-2.0.0-osx-x64.xml;aspnetcore-store-2.0.0-win7-x64.xml;aspnetcore-store-2.0.0-win7-x86.xml"
+      "sha512": "sha512-JO9CzV1hvjtrIzq06gJ5nNv7GV24Xz3Y3O9vx7fCe7ndNA0NmD3fZ9JUgFir2UvJ2/+9vvCo/6RXjyfywvQQIw==",
+      "path": "microsoft.rest.clientruntime/2.3.10",
+      "hashPath": "microsoft.rest.clientruntime.2.3.10.nupkg.sha512"
     },
-    "Microsoft.Rest.ClientRuntime.Azure/3.3.7": {
+    "Microsoft.Rest.ClientRuntime.Azure/3.3.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6u8JIuvrztse4tPOcvNzAJuzGBP0uY+Ijggk8ZYhp0siGEZ1XfZylf1vpNGUicvwcrhhoIgDW73Z1L6QGssr2g==",
-      "path": "microsoft.rest.clientruntime.azure/3.3.7",
-      "hashPath": "microsoft.rest.clientruntime.azure.3.3.7.nupkg.sha512",
-      "runtimeStoreManifestName": "aspnetcore-store-2.0.0-linux-x64.xml;aspnetcore-store-2.0.0-osx-x64.xml;aspnetcore-store-2.0.0-win7-x64.xml;aspnetcore-store-2.0.0-win7-x86.xml"
+      "sha512": "sha512-0cN3zl/lYtvClJMWVL5bCWr3iMnCx2/uGt8xbo8txNMJxp5bLKlhErKflVJRWeUfTl2clREt13+rOy/iQ1/RKg==",
+      "path": "microsoft.rest.clientruntime.azure/3.3.10",
+      "hashPath": "microsoft.rest.clientruntime.azure.3.3.10.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.BrowserLink/2.0.0": {
       "type": "package",
@@ -5320,12 +5283,12 @@
       "path": "microsoft.win32.registry/4.4.0",
       "hashPath": "microsoft.win32.registry.4.4.0.nupkg.sha512"
     },
-    "MySql.Data/8.0.8-dmr": {
+    "MySql.Data/8.0.9-dmr": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9ur96IO10ntp53nrLSJTcHxhwaFKp05XWZO1YPKF2cLZc23hwMVl++AAPrPr1/KYNlWUQHEP6jZQWXzSS4NMJQ==",
-      "path": "mysql.data/8.0.8-dmr",
-      "hashPath": "mysql.data.8.0.8-dmr.nupkg.sha512"
+      "sha512": "sha512-SpVb+r2fAU5r/suAKuHrrXvQEawlxQQ2hkRJgw3BETPpI5OLYfKmF7/SxYke2AKSxkBkd8I/fn8jkZarrGYWlQ==",
+      "path": "mysql.data/8.0.9-dmr",
+      "hashPath": "mysql.data.8.0.9-dmr.nupkg.sha512"
     },
     "Newtonsoft.Json/10.0.1": {
       "type": "package",
@@ -5508,110 +5471,110 @@
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
       "runtimeStoreManifestName": "aspnetcore-store-2.0.0-win7-x86.xml"
     },
-    "ServiceStack.Api.OpenApi.Core/1.0.44": {
+    "ServiceStack/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JyW0OcYu+6wEKwkbSWndAjZiHa2X1lwpLoPBDi4TPkqgCdrcoqsUzcRy3qVhpb7FGWfXKfGxfj2+0cL+hgbslw==",
-      "path": "servicestack.api.openapi.core/1.0.44",
-      "hashPath": "servicestack.api.openapi.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-++WmblEiJQKd6BRCk2iuFUSsezKNxoK+RkCyQXkEibfEUmUl91uW2D1/9e5Emb6Dwf4GSQUoxb4RuruJtPpi0A==",
+      "path": "servicestack/5.0.0",
+      "hashPath": "servicestack.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Aws.Core/1.0.44": {
+    "ServiceStack.Api.OpenApi/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-CMW8kHSDjAbI0RT37oiHKMPjCDHQZWI86vgqLX5MkA4xV5IN2mN3KmnO37U+yAf+QMMgPwsF1K4bev8AXJO6KQ==",
-      "path": "servicestack.aws.core/1.0.44",
-      "hashPath": "servicestack.aws.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-6ZhzcV4yxNJF3l0+LyXgQP5lCWLsFeCAa/Bem86T9j2+fbx/w464yBda68KzjiFhm/FCY9yiDnNR6hHHKs/Pkw==",
+      "path": "servicestack.api.openapi/5.0.0",
+      "hashPath": "servicestack.api.openapi.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Azure.Core/1.0.44": {
+    "ServiceStack.Aws/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3V+DWbdELdtYn+xkJHun+8L3vw5PsCf3jYCOz0E/fTmdZpBX5naFT+t+V3a7D/XSZ6bdMxWSfpF5IhNs/YHojg==",
-      "path": "servicestack.azure.core/1.0.44",
-      "hashPath": "servicestack.azure.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-rCBoYDd1eXpwvLSebb4AqDBrqrkfBk45IAlhnwzG6Od8I5aoIYXfaH/Ib5Wkg4cRoCkx7tuIleJ7b/24gjBRew==",
+      "path": "servicestack.aws/5.0.0",
+      "hashPath": "servicestack.aws.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Client.Core/1.0.44": {
+    "ServiceStack.Azure/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2cF0+GFzpSJo2URXJ4A6PVf5rmr5WHfJgKVUarpqydQsDZfEF/TVZHKcPJo7bApysWPhwEOSYoR0y/UGsLkvEA==",
-      "path": "servicestack.client.core/1.0.44",
-      "hashPath": "servicestack.client.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-N+d6kKU5xQ6dmhYHihqmtZMCyum7AToZ5ujVcFLQkp4CPk8XVt5VuV9fz1PtiG/UZtWxM7Yo7T9QVIhl6G8p2A==",
+      "path": "servicestack.azure/5.0.0",
+      "hashPath": "servicestack.azure.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Common.Core/1.0.44": {
+    "ServiceStack.Client/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cAv7fY+KPkuRhuWIvBaaz9vs9CdUTmK3NoI2FPiqznsuu0cJUH+Pj1yDd9ORWbMMO3aazJOyXlUx4h505BDyyw==",
-      "path": "servicestack.common.core/1.0.44",
-      "hashPath": "servicestack.common.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-UEV9B3lpwqlDTo05DYdhiCY51rVPoWJZRKvR/lNrLBoKLpROvYZiHG0O8Lr8mQzI1b8LSUAmd2QFe76MkWRwtQ==",
+      "path": "servicestack.client/5.0.0",
+      "hashPath": "servicestack.client.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Core/1.0.44": {
+    "ServiceStack.Common/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-up9YXYU2zz6lmOTnhZa6vhIuRcRgW7bBOxHlnb0e1zU824MwCAbUz/Qo7lUt884XDy9hzOn/rOZG59C8j+mKgQ==",
-      "path": "servicestack.core/1.0.44",
-      "hashPath": "servicestack.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-GhN5w9FAhBxv82EgORUb0Bm4604CcuQuKy1gR2GwuG7iImy2fCdRK2MmGSypG+T9kprsbhbtUNs6iVPBiz7UhQ==",
+      "path": "servicestack.common/5.0.0",
+      "hashPath": "servicestack.common.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Interfaces.Core/1.0.44": {
+    "ServiceStack.Interfaces/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SJl5TkrpItw9WrYe6dUvRW0j44JmeJ2LFLs3KfgIWsMKYlp+oMahdzAD3/llieCNxGCoo6H/pmWnB1c5cuzrEQ==",
-      "path": "servicestack.interfaces.core/1.0.44",
-      "hashPath": "servicestack.interfaces.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-YtWS2G9AUC5YswDMmbTevmetPUvB9MomNUIY90KniNcmBHoKExFIuNyHBenuV1dgcdo/zUjG1B3/zPx6lqf9Vg==",
+      "path": "servicestack.interfaces/5.0.0",
+      "hashPath": "servicestack.interfaces.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.OrmLite.Core/1.0.44": {
+    "ServiceStack.OrmLite/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PS9cNw4F9vlL0odd+o5y4Z9E/67GJ6WZOZW9YgNYfsZQiCizdvrlVoZhIKWDnkLpdZSt+kPCFV+F3nk7oZ6VjQ==",
-      "path": "servicestack.ormlite.core/1.0.44",
-      "hashPath": "servicestack.ormlite.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-a1VAKh2E+SCX0cppDZKxBufO9mYCR9s8McDSydYM7o+CL5kS7eABKNmQgSbFMuIeCJPzWn5ookhkbPgbebFtJQ==",
+      "path": "servicestack.ormlite/5.0.0",
+      "hashPath": "servicestack.ormlite.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.OrmLite.MySql.Core/1.0.44": {
+    "ServiceStack.OrmLite.MySql/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ukilDC1J3DgtinshNakEEt2duo3/iV+LcsQGwa5Pzkh+hIIUnz7gDGhauL//+lWBF5L8T0a2Id9hlGLWA6opMQ==",
-      "path": "servicestack.ormlite.mysql.core/1.0.44",
-      "hashPath": "servicestack.ormlite.mysql.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-mzJZVEplmBabEqRbptDVugWyt3jcaHuwMf2Xpn+J434eod1iOLWRutQzM90cOF4SbQcT1qm2VPGrMQw8fAXnUQ==",
+      "path": "servicestack.ormlite.mysql/5.0.0",
+      "hashPath": "servicestack.ormlite.mysql.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.OrmLite.PostgreSQL.Core/1.0.44": {
+    "ServiceStack.OrmLite.PostgreSQL/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5+veDfr8A+mgX/XeepIO/O6UGy1PYh/A6NoICASAV5OynjVnykYv5reu+Z8aOYx/U3uDYv9W6ouIIfRj11IF8A==",
-      "path": "servicestack.ormlite.postgresql.core/1.0.44",
-      "hashPath": "servicestack.ormlite.postgresql.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-ZQ2PJPwUWEmWzNiUOicXYQCOZ5B85MWuDBhfAAu/pFbCC8W8Td4/MEX+wgczgU4yJ450WNte9eI5pO5R3sIaBQ==",
+      "path": "servicestack.ormlite.postgresql/5.0.0",
+      "hashPath": "servicestack.ormlite.postgresql.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.OrmLite.Sqlite.Core/1.0.44": {
+    "ServiceStack.OrmLite.Sqlite/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vxD3qksUsHKS7vp5DBX5S/6EOWU7ZQa0MWAprQsRT+9Y2fb4nTl41ijT3GxZX3ZpBy8Bc7UpFPDUeCbnQ31dMA==",
-      "path": "servicestack.ormlite.sqlite.core/1.0.44",
-      "hashPath": "servicestack.ormlite.sqlite.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-zdb6Eoz96Lc3C5U6p3tpOvgdeMyBGUg56mn5Elc33h6LwMKjiCTGpHBs8LGThjQd6xeflkjcsriYeI3LrvwutQ==",
+      "path": "servicestack.ormlite.sqlite/5.0.0",
+      "hashPath": "servicestack.ormlite.sqlite.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.OrmLite.SqlServer.Core/1.0.44": {
+    "ServiceStack.OrmLite.SqlServer/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-q08SldJt+gim9kNmsYnmAX0SzuoaSi2/+riQ1rL5rt9gU5Hk5eCgr0c3ncruDSh5rLeqi0KS16+cRK00vxawwQ==",
-      "path": "servicestack.ormlite.sqlserver.core/1.0.44",
-      "hashPath": "servicestack.ormlite.sqlserver.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-zs6fhwtSHby0Gpf5EFWg1F5v0MwlVCrOKCZdCi/XFjbtRh6X+udPVYpsm1iPAzTixxq9GhPskXhZrZ+oFZNONg==",
+      "path": "servicestack.ormlite.sqlserver/5.0.0",
+      "hashPath": "servicestack.ormlite.sqlserver.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Redis.Core/1.0.44": {
+    "ServiceStack.Redis/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-U743GWzppZEhOUVmRmYhW1jwqizXsNZ1KVsavAmecS/RhPcSfKIJhWVKHFRDOarApNzDoQmhbTkhStk4t6uzcw==",
-      "path": "servicestack.redis.core/1.0.44",
-      "hashPath": "servicestack.redis.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-UTGpVMzHnzFyElNV8AINu9JNy8o/kp3ucDDPoIUJR4BieTKeqxcZfsgi+J0PJMsLc84Q6XsfNAiGuy05UytjlA==",
+      "path": "servicestack.redis/5.0.0",
+      "hashPath": "servicestack.redis.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Server.Core/1.0.44": {
+    "ServiceStack.Server/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-L9HxiSBjNrtRGaZOXe7q/ZFoNOsDX/997uHWAX/pH9CWC61RB4hVDPKEXBQDZDut/gSAa7mwZSWnH2xZIy0BSg==",
-      "path": "servicestack.server.core/1.0.44",
-      "hashPath": "servicestack.server.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-i+4nODKIrG+umEkMpQVT7zA6Uftc9n7qFGE5AW9egbm+wmnCgnvk1F6ASlA3czMt4JQ24Dhmx2SLiKJUxBrAcA==",
+      "path": "servicestack.server/5.0.0",
+      "hashPath": "servicestack.server.5.0.0.nupkg.sha512"
     },
-    "ServiceStack.Text.Core/1.0.44": {
+    "ServiceStack.Text/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-f0jG+RslgoJT+9QwCeZMUsRI0JJNLgWKF/ofd5T61WJj8ULuWNY40V6ji2peUGaSpGjjWQj3LH0usSd19aXglA==",
-      "path": "servicestack.text.core/1.0.44",
-      "hashPath": "servicestack.text.core.1.0.44.nupkg.sha512"
+      "sha512": "sha512-kSUNsfNGWJ2dnb52rpDWGKNKJGwg5gMmFx/jeNROGm8kkaHIeWe/Pn5c68vTg/3xsiUYWFcMl6hIpHjecVzA6w==",
+      "path": "servicestack.text/5.0.0",
+      "hashPath": "servicestack.text.5.0.0.nupkg.sha512"
     },
     "SQLitePCLRaw.bundle_green/1.1.7": {
       "type": "package",
@@ -5834,7 +5797,7 @@
     "System.Diagnostics.TraceSource/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VnYp1NxGx8Ww731y2LJ1vpfb/DKVNKEZ8Jsh5SgQTZREL/YpWRArgh9pI8CDLmgHspZmLL697CaLvH85qQpRiw==",
+      "sha512": "sha512-VBG6mhJiNYAxn29yMnqzdMCYSvzMXVNmTLwRsN4lSNzrDT8152LL7vtgU2pIIHRRTwwOmFJyNRP6q1sORgL8Ow==",
       "path": "system.diagnostics.tracesource/4.3.0",
       "hashPath": "system.diagnostics.tracesource.4.3.0.nupkg.sha512"
     },
@@ -6352,7 +6315,7 @@
     "System.Threading.Overlapped/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-m3HQ2dPiX/DSTpf+yJt8B0c+SRvzfqAJKx+QDWi+VLhz8svLT23MVjEOHPF/KiSLeArKU/iHescrbLd3yVgyNg==",
+      "sha512": "sha512-LRcp7Ir4HQ3I7uIhUb8ypaMDw23W1t3GMCA2+yUxTL3HG9ZrVJtLufoK/mF9zfCG2bxuRBf1Bj8FC9mOPddhIg==",
       "path": "system.threading.overlapped/4.3.0",
       "hashPath": "system.threading.overlapped.4.3.0.nupkg.sha512"
     },
@@ -6429,7 +6392,7 @@
     "System.Xml.XmlSerializer/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
+      "sha512": "sha512-pXIz8nVP9y1uc3WCyTdl5LDesu2M6BDlMF7+JZS72oqKSZHXd2Q9PwepKFsFryWDMQEAjkjmyDEFu4FISdYfCw==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
