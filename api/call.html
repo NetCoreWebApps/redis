@@ -1,9 +1,9 @@
 {{ { command } | ensureAllArgsNotEmpty }}
 
-{{ ['flush','monitor','brpop','blpop'] | any: contains(lower(command), it)
+{{ ['flush','monitor','brpop','blpop'] | any => contains(lower(command), it)
    | assignTo: illegalCommand }}
 
-{{ illegalCommand | ifThrowArgumentException('Command is not allowed.') }}
+{{ illegalCommand ? throwArgumentException('Command is not allowed.') : null }}
 
 {{ command  | redisCall | assignTo: contents }}
 

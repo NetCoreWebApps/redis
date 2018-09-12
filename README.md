@@ -1,6 +1,6 @@
 # Redis Vue Web App
 
-NET Core 2.0 Redis Vue Web App.
+NET Core 2.1 Redis Vue Web App.
 
 The `/app` folder contains the Redis Web App project.
 

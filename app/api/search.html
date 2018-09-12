@@ -1,5 +1,0 @@
-{{ limit | default(100) | assignTo: limit }}
-{{ q     | default('')  | assignTo: q }}
-
-{{ q     | append("*") | redisSearchKeys({ limit }) 
-         | return }}

@@ -34,18 +34,21 @@ title: Redis
 <div id="redis-info">
     <table class="table table-striped" style="width:450px">
         <tbody>
-{{ redisInfo | toList 
-   | select: <tr><th>{ it.Key | replace('_',' ') }</th><td title="{it.Value}">{ it.Value | substringWithElipsis(32) }</td></tr> }}
+        {{#each toList(redisInfo) }}
+            <tr><th>{{ it.Key | replace('_',' ') }}</th><td title="{{it.Value}}">{{ it.Value | substringWithEllipsis(32) }}</td></tr>
+        {{/each}}
         </tbody>
     </table>
 </div>
 </script>
 
+{{#raw}}
 <script type="text/x-template" id="search-results-template">
 <div id="search-results">
     <span v-show="results.length == 0">Your search did not match any keys..</span>
     <table class="table table-striped details auto-width" v-show="results.length > 0">
-        <caption v-show="results.length > 0">Results for '{{ query }}'</caption>
+        <caption v-show="results.length > 0">
+             '{{ query }}'</caption>
         <thead>
             <tr><th>Id</th><th>Type</th><th>Ttl</th><th>Size</th></tr>
         </thead>
@@ -60,14 +63,57 @@ title: Redis
     </table>
 </div>
 </script>
+{{/raw}}
 
-{{ continueExecutingFiltersOnError }}
-{{ ifHttpPost | use({ host, port, db, password }) | withoutEmptyValues | redisChangeConnection | end }}
+
 <script type="text/x-template" id="connection-template">
 <div id="connection-info" class="container" style="position:absolute;max-width:440px;margin:65px 0 0 0">
-    {{ ifHttpPost | use(lastErrorMessage) | onlyIfExists | formatRaw: <div class="alert alert-danger">{0}</div> }}
-    {{ ifHttpPost | ifNoError | showRaw: <div class="alert alert-success">Connection Changed</div> }}
-    {{ 'connection-info' | partial({ redis: redisConnection }) }}
+
+    {{ continueExecutingFiltersOnError }}
+    {{#if Request.Verb == "POST" }}
+        {{ { host, port, db, password } | withoutEmptyValues | redisChangeConnection | end }}
+        {{#if lastErrorMessage }}
+            <div class="alert alert-danger">{{lastErrorMessage}}</div>
+        {{else}}
+            <div class="alert alert-success">Connection Changed</div>
+        {{/if}}
+    {{/if}}
+
+    {{#with redisConnection}}
+    <form method="POST">
+        <div class="form-group row">
+            <label for="host" class="col-sm-3 col-form-label">Host</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="host" name="host" placeholder="host" value="{{ host }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="port" class="col-sm-3 col-form-label">Port</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="port" name="port" placeholder="port" value="{{ port }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="db" class="col-sm-3 col-form-label">Database</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="db" name="db" placeholder="db" value="{{ db }}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" name="password" placeholder="password" value="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary">Change Connection</button>
+                <button type="button" class="btn btn-link" @click="done()">done</button>
+            </div>
+        </div>
+    </form>
+    {{/with}}
 </div>
 </script>
 
@@ -80,6 +126,7 @@ title: Redis
 </table>
 </script>
 
+{{#raw}}
 <script type="text/x-template" id="key-view-template">
 <table class="table table-bordered auto-width">
     <caption>
@@ -133,8 +180,10 @@ title: Redis
     </form>
 </div>
 </script>
+{{/raw}}
 
-{{ `<script>
+{{#raw appendTo scripts}}
+<script>
     Vue.prototype.$http = axios;
     window.bus = new Vue({});
 
@@ -368,7 +417,8 @@ title: Redis
 
     window.onpopstate = function(e){ vm.load(parseQuery(location.search)) };
     vm.load(parseQuery(location.search));
-</script>` | appendTo: scripts }}
+</script>
+{{/raw}}
 
 <div id="app">
     <search ref="search" @search-results="loadSearchResults" @run-command="runCommand"></search>
@@ -376,6 +426,7 @@ title: Redis
     <h6 id="connection"><span class="link" @click="loadView('connection')">@ {{ redisConnectionString }}</span></h6>
     <connection v-show="view == 'connection'"></connection>
 
+    {{#raw}}
     <div id="details">
         <div v-if="error" class="alert alert-danger">{{ error.message }}</div>
         <cmd-view v-show="cmdOutput != null"  :command="cmdText" :value="cmdOutput"></cmd-view>
@@ -387,4 +438,5 @@ title: Redis
         <redis-info     v-show="!q"></redis-info>
         <search-results v-show="q" :query="q" :results="searchResults" :item="key" @select-item="selectItem"></search-results>
     </div>
+    {{/raw}}
 </div>

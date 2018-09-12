@@ -1,7 +1,7 @@
 <html>
 <head>
-<title>{{ title | default('Redis Vue WebApp') }}</title>
-{{ ifDebug | select: <script>{ '/js/hot-loader.js' | includeFile }</script> }}
+<title>{{ title ?? 'Redis Vue WebApp' }}</title>
+{{#if debug}}<script>{{ '/js/hot-loader.js' | includeFile }}</script>{{/if}}
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Redis Vue WebApp">
