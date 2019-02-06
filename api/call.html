@@ -1,3 +1,5 @@
+{{ 'command' | importRequestParams }}
+
 {{ { command } | ensureAllArgsNotEmpty }}
 
 {{ ['flush','monitor','brpop','blpop'] | any => contains(lower(command), it)
