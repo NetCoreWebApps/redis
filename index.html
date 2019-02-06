@@ -71,6 +71,7 @@ title: Redis
 
     {{ continueExecutingFiltersOnError }}
     {{#if Request.Verb == "POST" }}
+        {{ 'host, port, db, password' | importRequestParams }}
         {{ { host, port, db, password } | withoutEmptyValues | redisChangeConnection | end }}
         {{#if lastErrorMessage }}
             <div class="alert alert-danger">{{lastErrorMessage}}</div>
