@@ -1,4 +1,4 @@
-{{ limit ?? 100  | assignTo: limit }}
+{{ qs.limit ?? 100  | assignTo: limit }}
 
-{{ `${q ?? ''}*` | redisSearchKeys({ limit }) 
-                 | return }}
+{{ `${qs.q ?? ''}*` | redisSearchKeys({ limit }) 
+                    | return }}
